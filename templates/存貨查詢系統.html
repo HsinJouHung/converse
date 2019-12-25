@@ -1,0 +1,26 @@
+{% load static %}
+
+<head>
+  <meta charset="utf-8">
+  <title>存貨查詢系統</title>
+  <link rel=stylesheet type="text/css" href="{% static 'home/css/存貨查詢系統.css' %}">
+</head>
+<body>
+  <h1 class='ch'>存貨查詢系統</h1>
+
+  <h2 class="select">選擇店舖</h2>
+  <div class="select">
+    <form>
+      <select name="branch">
+       <option value="nanjing">南京店</option>
+       <option value="fuhsing">復興店</option>
+       <option value="banchiao">板橋店</option>
+       <option value="nanyang">南陽店</option>
+      </select>
+    </form>
+  </div>
+
+  <div class="outer">
+    <div class="button back">返回前頁</div>
+  </div>
+</body>
