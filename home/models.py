@@ -1,0 +1,102 @@
+from django.db import models
+
+# Create your models here.
+class Store(models.Model):
+	store_id = models.CharField(max_length=20,primary_key = True)
+	store_name = models.CharField(max_length=20)
+	store_tel=models.CharField(max_length=20)
+	store_address=models.CharField(max_length=20)
+	store_district=models.CharField(max_length=10)
+
+	def __str__(self):
+		return self.store_name
+
+class Customer(models.Model):
+	customer_id = models.CharField(max_length=20,primary_key = True)
+	customer_name = models.CharField(max_length=20)
+	customer_tel=models.CharField(max_length=20)
+	customer_address=models.CharField(max_length=20)
+	customer_age=models.DecimalField(max_digits=10,decimal_places=0)
+	email=models.CharField(max_length=30)
+	num_familymembers=models.DecimalField(max_digits=10,decimal_places=0)
+	register_date=models.DateField(auto_now_add=True)
+	monthly_income=models.DecimalField(max_digits=100,decimal_places=0)
+
+	def __str__(self):
+		return self.customer_id
+
+class Product(models.Model):
+	product_id = models.CharField(max_length=20,primary_key = True)
+	product_name = models.CharField(max_length=20)
+	product_cost=models.DecimalField(max_digits=20,decimal_places=0)
+	product_price=models.DecimalField(max_digits=20,decimal_places=0)
+
+	def __str__(self):
+	    return self.product_id
+
+
+
+
+class Company(models.Model):
+	company_id = models.CharField(max_length=20,primary_key = True)
+	company_name = models.CharField(max_length=20)
+	company_tel=models.CharField(max_length=20)
+	company_address=models.CharField(max_length=20)
+
+	def __str__(self):
+		return self.company_name
+
+class Warehouse(models.Model):
+	warehouse_id = models.CharField(max_length=20,primary_key = True)
+	warehouse_address = models.CharField(max_length=20)
+
+	def __str__(self):
+		return self.warehouse_id
+    
+class Inventory(models.Model):
+	shoe_size = models.CharField(max_length=20)
+	inventory_quantity = models.DecimalField(max_digits=10,decimal_places=0)
+	product_id = models.ForeignKey(Product,on_delete=models.CASCADE)
+	store_id = models.ForeignKey(Store, on_delete=models.CASCADE)
+
+	#def __str__(self):
+	#	s = str(self.product_id) + str(self.store_id) + str(self.shoe_size)
+	#	return s
+
+	def __str__(self):
+	 	result = self.store_id,self.product_id,self.shoe_size
+	 	return result[0],result[1],result[2]
+	class Meta:
+	 	unique_together = ("product_id","store_id","shoe_size")
+
+
+
+class Storage(models.Model):
+	shoe_size = models.CharField(max_length=20)
+	product_id = models.ForeignKey(Product,on_delete=models.CASCADE)
+	storage_quantity = models.DecimalField(max_digits=10, decimal_places=0)
+	company_id = models.ForeignKey(Company, on_delete=models.CASCADE)
+	warehouse_id = models.ForeignKey(Warehouse, on_delete=models.CASCADE)
+
+	def __str__(self):
+	 	result = self.warehouse_id,self.product_id,self.shoe_size
+	 	return result[0],result[1],result[2]
+	class Meta:
+	 	unique_together = ("product_id","warehouse_id","shoe_size")
+
+class Purchase(models.Model):
+	purchase_date = models.DateField(auto_now_add=True)
+	purchase_method = models.CharField(max_length=20)
+	shoe_size = models.CharField(max_length=10)
+	#test = models.ForeignKey(Inventory, null=True, on_delete=models.CASCADE)
+	customer_id = models.ForeignKey(Customer, on_delete=models.CASCADE)
+	product_id = models.ForeignKey(Product, on_delete=models.CASCADE)
+
+	def __str__(self):
+	 	result = str(self.product_id)+","+str(self.customer_id)+","+str(self.shoe_size)
+	 	return result
+	class Meta: 
+	 	unique_together = ("product_id","customer_id","shoe_size")
+
+
+		
