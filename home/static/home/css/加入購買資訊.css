@@ -8,7 +8,7 @@
 
 body{
   background-attachment: fixed;
-  /* background-image: url('converse-shoes.png'); */
+  background-image: url('converse-shoes.png');
   background-repeat:no-repeat;
   background-size:  500px 400px;
   background-position:right bottom;
@@ -24,31 +24,52 @@ h1{
   display: inline-block;
 }
 
-h2{
-  display: inline-block;
-  transform: translate(200px, 20px);
-  margin-top: 0px;
 
+
+
+h2,input,form{
+  font-size: 30px;
+  display: inline-block;
+  margin: 15px;
+  font-size: 20px;
+
+}
+
+h2{
+  width:26%;
+  text-align: right;
+  /* transform: translate(-200px,0px); */
+  /* float:right; */
 }
 
 input{
-  font-size: 15px;
-  display: inline;
-  transform: translate(340px, -30px);
+  margin:15px;
+  /* float: inherit; */
 }
 
-.block{
-  position: relative;
 
+form{
+  position: absolute;
+  margin-left: 0px;
+  transform: translate(250px, 0px);
 }
 
 .button{
+  transform: translate(400px);
+}
+
+/* input{
+  position: absolute;
+  margin-left: 50px;
+} */
+
+/* .button{
   font-family: 微軟正黑體;
   font-size: 20px;
   padding: 2px 9px;
   background-color: #C0D89C;
 
-}
+} */
 .outer{
   border: 2px #3C3C3B solid;
   background-color: #C0D89C;
