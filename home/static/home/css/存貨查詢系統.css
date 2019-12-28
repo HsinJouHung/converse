@@ -17,10 +17,15 @@ h1{
 
 h2{
   margin-left: 60px;
+  display: inline-block;
 }
 
-.select{
+form{
   display: inline-block;
+}
+
+select{
+  font-size: 15px;
 }
 
 .button{

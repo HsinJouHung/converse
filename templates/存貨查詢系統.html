@@ -4,21 +4,57 @@
   <meta charset="utf-8">
   <title>存貨查詢系統</title>
   <link rel=stylesheet type="text/css" href="{% static 'home/css/存貨查詢系統.css' %}">
+
+
 </head>
 <body>
   <h1 class='ch'>存貨查詢系統</h1>
 
   <h2 class="select">選擇店舖</h2>
-  <div class="select">
-    <form>
-      <select name="branch">
-       <option value="nanjing">南京店</option>
-       <option value="fuhsing">復興店</option>
-       <option value="banchiao">板橋店</option>
-       <option value="nanyang">南陽店</option>
-      </select>
-    </form>
-  </div>
+
+  <form>
+    <select id="district-list" onchange="changeDistrict(this.selectedIndex)"></select>
+    <select id="store-list"></select>
+  </form>
+
+  <script type="text/javascript">
+    var district=['北區','中區','南區'];
+    var districtSelect =document.getElementById("district-list");
+    var inner="";
+    for(var i=0;i<district.length;i++){
+        inner=inner+'<option value=i>'+district[i]+'</option>';
+    }
+    districtSelect.innerHTML=inner;
+
+    var store=new Array();
+    store[0] = ['北區A','北區B','北區C','北區D','北區E']
+    store[1] = ['中區A','中區B','中區C','中區D','中區E']
+    store[2] = ['南區A','南區B','南區C']
+
+    function changeDistrict(index){
+        var Sinner="";
+        for(var i=0;i<store[index].length;i++){
+            Sinner=Sinner+'<option value=i>'+store[index][i]+'</option>';
+        }
+        var storeSelect=document.getElementById("store-list");
+        storeSelect.innerHTML=Sinner;
+    }
+    changeDistrict(document.getElementById("district-list").selectedIndex);
+
+
+    function
+  </script>
+
+
+  <table>
+    <tbody id="tbody1">
+    </tbody>
+  </table>
+
+
+
+
+
 
   <div class="outer">
     <div class="button back">返回前頁</div>

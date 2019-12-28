@@ -12,7 +12,7 @@ body{
   background-repeat:no-repeat;
   background-size:  500px 400px;
   background-position:right bottom;
-  margin-left: 60px;
+  /* margin-left: 60px; */
 }
 
 h1{
@@ -36,7 +36,7 @@ h2,input,form{
 }
 
 h2{
-  width:26%;
+  width:20%;
   text-align: right;
   /* transform: translate(-200px,0px); */
   /* float:right; */
