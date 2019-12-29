@@ -6,6 +6,7 @@
   <link rel=stylesheet type="text/css" href="{% static 'home/css/存貨查詢系統.css' %}">
 
 
+
 </head>
 <body>
   <h1 class='ch'>存貨查詢系統</h1>
@@ -16,6 +17,26 @@
     <select id="district-list" onchange="changeDistrict(this.selectedIndex)"></select>
     <select id="store-list"></select>
   </form>
+
+  <div>
+      <table width= "800px" border="1">
+      <tr>
+        <th>分店</th>
+        <th>型號</th>
+        <th>鞋碼</th>
+        <th>數量</th>
+      </tr>
+      <!-- {% for r in result %}
+      <tr>
+        <th> {{ result.name }}</th>
+        <th> {{ result.address }}</th>
+        <th> {{ result.time }}</th>
+        <th> {{ result.date }}</th>
+      </tr>
+      {% endfor %} -->
+      </table>
+  </div>
+
 
   <script type="text/javascript">
     var district=['北區','中區','南區'];
@@ -41,15 +62,10 @@
     }
     changeDistrict(document.getElementById("district-list").selectedIndex);
 
-
-    function
   </script>
 
 
-  <table>
-    <tbody id="tbody1">
-    </tbody>
-  </table>
+
 
 
 

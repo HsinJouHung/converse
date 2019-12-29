@@ -29,6 +29,15 @@ img{
 
 }
 
+select{
+  font-size: 15px;
+}
+
+.select{
+  display: inline-block;
+}
+
+
 .who{
   font-size: 30px;
   margin-left: 50px;
