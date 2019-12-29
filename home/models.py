@@ -12,18 +12,18 @@ class Store(models.Model):
 		return self.store_name
 
 class Customer(models.Model):
-	customer_id = models.CharField(max_length=20,primary_key = True)
+	customer_id = models.CharField(max_length = 20,primary_key = True)
 	customer_name = models.CharField(max_length=20)
 	customer_tel=models.CharField(max_length=20)
 	customer_address=models.CharField(max_length=20)
 	customer_age=models.DecimalField(max_digits=10,decimal_places=0)
 	email=models.CharField(max_length=30)
 	num_familymembers=models.DecimalField(max_digits=10,decimal_places=0)
-	register_date=models.DateField(auto_now_add=True)
+	register_date=models.DateField()
 	monthly_income=models.DecimalField(max_digits=100,decimal_places=0)
 
 	def __str__(self):
-		return self.customer_id
+		return self.customer_name
 
 class Product(models.Model):
 	product_id = models.CharField(max_length=20,primary_key = True)
@@ -64,8 +64,8 @@ class Inventory(models.Model):
 	#	return s
 
 	def __str__(self):
-	 	result = self.store_id,self.product_id,self.shoe_size
-	 	return result[0],result[1],result[2]
+	 	result = str(self.store_id)+","+str(self.product_id)+","+str(self.shoe_size)
+	 	return result
 	class Meta:
 	 	unique_together = ("product_id","store_id","shoe_size")
 
@@ -79,13 +79,13 @@ class Storage(models.Model):
 	warehouse_id = models.ForeignKey(Warehouse, on_delete=models.CASCADE)
 
 	def __str__(self):
-	 	result = self.warehouse_id,self.product_id,self.shoe_size
-	 	return result[0],result[1],result[2]
+	 	result = str(self.warehouse_id)+","+str(self.product_id)+","+str(self.shoe_size)
+	 	return result
 	class Meta:
 	 	unique_together = ("product_id","warehouse_id","shoe_size")
 
 class Purchase(models.Model):
-	purchase_date = models.DateField(auto_now_add=True)
+	purchase_date = models.DateField()
 	purchase_method = models.CharField(max_length=20)
 	shoe_size = models.CharField(max_length=10)
 	#test = models.ForeignKey(Inventory, null=True, on_delete=models.CASCADE)
@@ -93,8 +93,10 @@ class Purchase(models.Model):
 	product_id = models.ForeignKey(Product, on_delete=models.CASCADE)
 
 	def __str__(self):
-	 	result = str(self.product_id)+","+str(self.customer_id)+","+str(self.shoe_size)
-	 	return result
+	 	#result = str(self.product_id)+","+str(self.customer_id)+","+str(self.shoe_size)
+		result = str(self.customer_id)+","+str(self.purchase_date)
+		return result
+
 	class Meta: 
 	 	unique_together = ("product_id","customer_id","shoe_size")
 
