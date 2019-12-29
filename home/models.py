@@ -63,7 +63,7 @@ class Inventory(models.Model):
 	#	return s
 
 	def __str__(self):
-<<<<<<< HEAD
+
 	 	result = str(self.store_id)+","+str(self.product_id)+","+str(self.shoe_size)
 	 	return result
 

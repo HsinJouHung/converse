@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from home.models import Customer,Purchase
+from home.models import Customer,Order
 from django.http import HttpResponse
 
 # Create your views here.
