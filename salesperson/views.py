@@ -1,9 +1,7 @@
 from django.shortcuts import render
-<<<<<<< HEAD
-from home.models import Customer
-=======
+
 from home.models import Customer,Product,Store,Order
->>>>>>> 3df7561f972a9f4278bc35ce67bc73cfde577c95
+
 from django.http import HttpResponse
 
 # Create your views here.
