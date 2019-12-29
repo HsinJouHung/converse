@@ -21,6 +21,8 @@ class Customer(models.Model):
 	num_familymembers=models.DecimalField(max_digits=10,decimal_places=0)
 	register_date=models.DateField()
 	monthly_income=models.DecimalField(max_digits=100,decimal_places=0)
+	customer_value = models.DecimalField(max_digits=40,decimal_places=4,blank=True,default=0)
+	customer_rfm = models.CharField(max_length=5,blank=True)
 
 
 	def __str__(self):
