@@ -12,16 +12,16 @@ class Store(models.Model):
 		return self.store_name
 
 class Customer(models.Model):
-	customer_id = models.CharField(max_length=20,primary_key = True)
+	customer_id = models.CharField(max_length = 20,primary_key = True)
 	customer_name = models.CharField(max_length=20)
 	customer_tel=models.CharField(max_length=20,blank=True)
 	customer_address=models.CharField(max_length=20,blank=True)
 	customer_age=models.DecimalField(max_digits=10,decimal_places=0)
 	email=models.CharField(max_length=30,blank=True)
 	num_familymembers=models.DecimalField(max_digits=10,decimal_places=0)
-	register_date=models.DateField(auto_now_add=True)
+	register_date=models.DateField()
 	monthly_income=models.DecimalField(max_digits=100,decimal_places=0)
-	customer_satisfication = models.CharField(max_length=10)
+
 
 	def __str__(self):
 		return self.customer_id
@@ -53,7 +53,7 @@ class Warehouse(models.Model):
 		return self.warehouse_id
     
 class Inventory(models.Model):
-	shoe_size = models.CharField(max_length=20)
+	shoe_size = models.CharField(max_length=2,unique = True)
 	inventory_quantity = models.DecimalField(max_digits=10,decimal_places=0)
 	product_id = models.ForeignKey(Product,on_delete=models.CASCADE)
 	store_id = models.ForeignKey(Store, on_delete=models.CASCADE)
@@ -63,8 +63,10 @@ class Inventory(models.Model):
 	#	return s
 
 	def __str__(self):
-	 	result = self.store_id,self.product_id,self.shoe_size
-	 	return str(result)
+
+	 	result = str(self.store_id)+","+str(self.product_id)+","+str(self.shoe_size)
+	 	return result
+
 	class Meta:
 	 	unique_together = ("product_id","store_id","shoe_size")
 
@@ -78,26 +80,34 @@ class Storage(models.Model):
 	warehouse_id = models.ForeignKey(Warehouse, on_delete=models.CASCADE)
 
 	def __str__(self):
-	 	result = self.warehouse_id,self.product_id,self.shoe_size
-	 	return str(result)
+
+	 	result = str(self.warehouse_id)+","+str(self.product_id)+","+str(self.shoe_size)
+	 	return result
 	class Meta:
 	 	unique_together = ("product_id","warehouse_id","shoe_size")
 
 class Order(models.Model):
 	order_date = models.DateField()
 	order_method = models.CharField(max_length=20)
-	discount_rate = models.DecimalField(max_digits = 10, decimal_places = 0)
+	discount_rate = models.DecimalField(max_digits = 10, decimal_places = 3)
+	#shoe_size = models.CharField(max_length=20)
 	#test = models.ForeignKey(Inventory, null=True, on_delete=models.CASCADE)
 	customer_id = models.ForeignKey(Customer, on_delete=models.CASCADE)
 	product_id = models.ForeignKey(Product, on_delete=models.CASCADE)
 	store_id = models.ForeignKey(Store, on_delete=models.CASCADE)
-	shoe_size = models.ForeignKey(Inventory, on_delete=models.CASCADE)
+	#shoe_size = models.ForeignKey(Inventory,on_delete=models.CASCADE)
+	size = models.CharField(max_length=20)
+
 
 	def __str__(self):
-	 	result = self.product_id,self.customer_id
-	 	return str(result)
-	class Meta: 
-	 	unique_together = ("product_id","shoe_size")
+
+	 	#result = str(self.product_id)+","+str(self.customer_id)+","+str(self.shoe_size)
+		result = str(self.customer_id)+","+str(self.order_date)
+		return result
+
+
+
+
 
 
 		

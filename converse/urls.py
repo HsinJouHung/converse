@@ -22,7 +22,7 @@ from home.views import company_login
 from home.views import sales_login
 from home.views import delivery_login
 from manageperson.views import manage,report,cusanalysis,cuscluster
-from salesperson.views import sales,newmember,newsales,checkinventory
+from salesperson.views import sales,newmember,newsales,checkinventory,new_member,new_order
 from supplyperson.views import supply
 from deliveryperson.views import delivery
 
@@ -42,5 +42,7 @@ urlpatterns = [
     path('manage/customer_cluster/',cuscluster),
     path('sales/new_member/',newmember),
     path('sales/new_sales/',newsales),
-    path('sales/check_inventory/',checkinventory)
+    path('sales/check_inventory/',checkinventory),
+    path('sales/new_member/member/',new_member),
+    path('sales/new_sales/order/',new_order)
 ]
