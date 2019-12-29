@@ -55,7 +55,7 @@ class Warehouse(models.Model):
 		return self.warehouse_id
     
 class Inventory(models.Model):
-	shoe_size = models.CharField(max_length=2,unique = True)
+	shoe_size = models.CharField(max_length=2)
 	inventory_quantity = models.DecimalField(max_digits=10,decimal_places=0)
 	product_id = models.ForeignKey(Product,on_delete=models.CASCADE)
 	store_id = models.ForeignKey(Store, on_delete=models.CASCADE)
@@ -94,18 +94,14 @@ class Order(models.Model):
 
 
 	discount_rate = models.DecimalField(max_digits = 10, decimal_places = 3)
-	#shoe_size = models.CharField(max_length=20)
-	#test = models.ForeignKey(Inventory, null=True, on_delete=models.CASCADE)
 	customer_id = models.ForeignKey(Customer, on_delete=models.CASCADE)
 	product_id = models.ForeignKey(Product, on_delete=models.CASCADE)
 	store_id = models.ForeignKey(Store, on_delete=models.CASCADE)
-	#shoe_size = models.ForeignKey(Inventory,on_delete=models.CASCADE)
 	size = models.CharField(max_length=20)
 
 
 	def __str__(self):
 
-	 	#result = str(self.product_id)+","+str(self.customer_id)+","+str(self.shoe_size)
 		result = str(self.customer_id)+","+str(self.order_date)
 		return result
 
