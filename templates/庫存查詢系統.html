@@ -10,16 +10,36 @@
 <body>
   <h1 class='ch'>庫存查詢系統</h1>
 
-  <h2 class="select">選擇區域</h2>
+  <h2 class="select">選擇廠商</h2>
   <div class="select">
     <form>
       <select name="city">
-       <option value="Taipei">台北市</option>
-       <option value="NewTaipei">新北市</option>
-       <option value="Taichung">台中市</option>
-       <option value="Kaohsiung">南陽店</option>
+       <option value="Taipei">廠商A</option>
+       <option value="NewTaipei">廠商B</option>
+       <option value="Taichung">廠商C</option>
+       <option value="Kaohsiung">廠商D</option>
       </select>
     </form>
+  </div>
+
+  <div>
+      <table width= "800px" border="1">
+      <tr>
+        <th>型號</th>
+        <th>鞋碼</th>
+        <th>訂購數量</th>
+        <th>訂購倉庫</th>
+        <th>訂購日期</th>
+      </tr>
+      <!-- {% for r in result %}
+      <tr>
+        <th> {{ result.name }}</th>
+        <th> {{ result.address }}</th>
+        <th> {{ result.time }}</th>
+        <th> {{ result.date }}</th>
+      </tr>
+      {% endfor %} -->
+      </table>
   </div>
 
   <div class="outer">
