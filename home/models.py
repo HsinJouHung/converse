@@ -21,10 +21,12 @@ class Customer(models.Model):
 	num_familymembers=models.DecimalField(max_digits=10,decimal_places=0)
 	register_date=models.DateField()
 	monthly_income=models.DecimalField(max_digits=100,decimal_places=0)
+	customer_value = models.DecimalField(max_digits=40,decimal_places=4,blank=True,default=0)
+	customer_rfm = models.CharField(max_length=5,blank=True)
 
 
 	def __str__(self):
-		return self.customer_name
+		return self.customer_id
 
 class Company(models.Model):
 	company_id = models.CharField(max_length=20,primary_key = True)
@@ -53,7 +55,7 @@ class Warehouse(models.Model):
 		return self.warehouse_id
     
 class Inventory(models.Model):
-	shoe_size = models.CharField(max_length=20)
+	shoe_size = models.CharField(max_length=2,unique = True)
 	inventory_quantity = models.DecimalField(max_digits=10,decimal_places=0)
 	product_id = models.ForeignKey(Product,on_delete=models.CASCADE)
 	store_id = models.ForeignKey(Store, on_delete=models.CASCADE)
@@ -89,11 +91,27 @@ class Storage(models.Model):
 class Order(models.Model):
 	order_date = models.DateField()
 	order_method = models.CharField(max_length=20)
+
+
+	discount_rate = models.DecimalField(max_digits = 10, decimal_places = 3)
+	#shoe_size = models.CharField(max_length=20)
+	#test = models.ForeignKey(Inventory, null=True, on_delete=models.CASCADE)
+	customer_id = models.ForeignKey(Customer, on_delete=models.CASCADE)
+	product_id = models.ForeignKey(Product, on_delete=models.CASCADE)
+	store_id = models.ForeignKey(Store, on_delete=models.CASCADE)
+	#shoe_size = models.ForeignKey(Inventory,on_delete=models.CASCADE)
 	size = models.CharField(max_length=20)
-	discount_rate = models.DecimalField(max_digits=20,decimal_places=0)
-	customer_id = models.ForeignKey(Customer,on_delete=models.CASCADE)
+
 
 	def __str__(self):
 
-		result = str(self.customer_id) + "," + str(self.order_date)		
+	 	#result = str(self.product_id)+","+str(self.customer_id)+","+str(self.shoe_size)
+		result = str(self.customer_id)+","+str(self.order_date)
 		return result
+
+
+
+
+
+
+
